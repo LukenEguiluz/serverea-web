@@ -27,7 +27,6 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -135,13 +134,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['api.healthrelu.com']
+ALLOWED_HOSTS = ['api.healthrelu.com', 'localhost:8000', '127.0.0.1', 'localhost']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",           # desarrollo local
     "http://localhost",                # opcional
     "https://app.healthrelu.com",      # producción
     "https://healthrelu.com",          # producción
+    "http://127.0.0.1:8000",          # desarrollo local
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -149,6 +149,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost",                # opcional
     "https://app.healthrelu.com",      # producción
     "https://healthrelu.com",          # producción
+    "http://127.0.0.1:8000",          # desarrollo local
 ]
 
 
