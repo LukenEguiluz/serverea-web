@@ -134,11 +134,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['api.healthrelu.com', 'localhost:8000', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['api.healthrelu.com','app.healthrelu.com', 'localhost:8000', '127.0.0.1', 'localhost']
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",           # desarrollo local
     "http://localhost",                # opcional
+    "https://api.healthrelu.com",      # producción
     "https://app.healthrelu.com",      # producción
     "https://healthrelu.com",          # producción
     "http://127.0.0.1:8000",          # desarrollo local
@@ -147,18 +149,24 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",           # desarrollo local
     "http://localhost",                # opcional
+    "https://api.healthrelu.com",      # producción
     "https://app.healthrelu.com",      # producción
     "https://healthrelu.com",          # producción
     "http://127.0.0.1:8000",          # desarrollo local
 ]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://(.*\.)?healthrelu\.com$",
+]
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTP_ONLY = True
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000"
-]
+
 CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = "None"
@@ -226,3 +234,20 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'user.User'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+import logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}

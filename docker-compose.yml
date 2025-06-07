@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   backend:
     build: ./server
@@ -11,20 +12,31 @@ services:
       - ./server/.env
     networks:
       - web
+
   frontend:
-    build: ./client
-    expose:
-      - 80
+    build:
+      context: ./client
+    volumes:
+      - ./client:/app
+    env_file:
+      - ./client/.env
+    ports:
+      - "3000:3000"              # Para desarrollo local
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
     networks:
       - web
+
   nginx-proxy-manager:
     image: jc21/nginx-proxy-manager:latest
     container_name: nginx-proxy-manager
     restart: unless-stopped
     ports:
-      - 80:80
-      - 443:443
-      - 81:81
+      - "80:80"
+      - "443:443"
+      - "81:81"
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
@@ -33,7 +45,9 @@ services:
       - frontend
     networks:
       - web
+
 networks:
-  web: null
+  web:
+
 volumes:
-  sqlite_data: null
+  sqlite_data:
