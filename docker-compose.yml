@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./server
+    volumes:
+      - ./server:/app
+      - sqlite_data:/app/db/
+    expose:
+      - 8000
+    env_file:
+      - ./server/.env
+    networks:
+      - web
+
+  frontend:
+    build: ./client
+    expose:
+      - 80
+    networks:
+      - web
+
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - web
+
+networks:
+  web:
+
+volumes:
+  sqlite_data:
