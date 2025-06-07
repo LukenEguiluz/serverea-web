@@ -135,9 +135,23 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ALLOWED_HOSTS = ['api.healthrelu.com']
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",           # desarrollo local
+    "http://localhost",                # opcional
+    "https://app.healthrelu.com",      # producción
+    "https://healthrelu.com",          # producción
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",           # desarrollo local
+    "http://localhost",                # opcional
+    "https://app.healthrelu.com",      # producción
+    "https://healthrelu.com",          # producción
+]
+
+
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTP_ONLY = True
@@ -209,3 +223,5 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'user.User'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
