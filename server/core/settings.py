@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Apps
     'user',
+    'boston_scientific',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +135,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['api.healthrelu.com','app.healthrelu.com', 'localhost:8000', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['api.healthrelu.com','app.healthrelu.com', 'localhost:8000', '127.0.0.1', 'localhost', '127.0.0.1:8000',]
 
 
 CORS_ALLOWED_ORIGINS = [

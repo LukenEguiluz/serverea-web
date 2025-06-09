@@ -10,3 +10,5 @@ sqlparse==0.4.4
 setuptools
 Pillow
 gunicorn
+pandas
+openpyxl
