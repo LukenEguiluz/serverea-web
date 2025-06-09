@@ -92,7 +92,7 @@ export default function Navbar() {
         )}
 
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Mi Sitio Web
+          HEALTHrelu
         </Typography>
 
         {!isMobile && (
