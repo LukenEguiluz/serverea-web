@@ -76,6 +76,13 @@ export default function Navbar() {
                   >
                     Boston
                   </MenuItem>
+                  <MenuItem
+                    component={NavLink}
+                    to="/auth/user/register"
+                    onClick={handleMenuClose}
+                  >
+                    Register
+                  </MenuItem>
                   <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
                 </>
               ) : (
@@ -111,6 +118,13 @@ export default function Navbar() {
                   to="/auth/user/boston"
                 >
                   Boston
+                </Button>
+                <Button
+                  color="inherit"
+                  component={NavLink}
+                  to="/auth/user/register"
+                >
+                  Register User
                 </Button>
                 {/* <Button color="inherit" onClick={handleLogout}>
                   Cerrar sesión
